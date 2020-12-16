@@ -1,0 +1,6 @@
+spring:
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    bootstrap-servers: dev:9097, dev:9098, dev:9099
