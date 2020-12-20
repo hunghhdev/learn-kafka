@@ -2,6 +2,7 @@ package dev.hunghh.learnkafka.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import dev.hunghh.learnkafka.domain.LibraryEvent;
+import dev.hunghh.learnkafka.domain.LibraryEventType;
 import dev.hunghh.learnkafka.producer.LibraryEventProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,11 @@ public class LibraryEventController {
 //        libraryEventProducer.sendLibraryEvent(libraryEvent);
 //        SendResult<Integer, String> sendResult = libraryEventProducer.sendLibraryEventSynchronous(libraryEvent);
 //        log.info("sendResult is {}", sendResult.toString());
+        libraryEvent.setLibraryEventType(LibraryEventType.NEW);
         libraryEventProducer.sendLibraryEvent_Approach2(libraryEvent);
         log.info("after sendLibraryEvent");
         return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
     }
+
+    // PUT
 }
