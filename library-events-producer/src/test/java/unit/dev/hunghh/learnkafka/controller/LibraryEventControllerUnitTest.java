@@ -1,6 +1,5 @@
 package dev.hunghh.learnkafka.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.hunghh.learnkafka.domain.Book;
 import dev.hunghh.learnkafka.domain.LibraryEvent;
@@ -16,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,7 +46,7 @@ public class LibraryEventControllerUnitTest {
                 .libraryEventType(LibraryEventType.NEW)
                 .build();
         String json = objectMapper.writeValueAsString(libraryEvent);
-        doNothing().when(libraryEventProducer).sendLibraryEvent_Approach2(isA(LibraryEvent.class));
+        when(libraryEventProducer.sendLibraryEvent_Approach2(isA(LibraryEvent.class))).thenReturn(null);
 
         mockMvc.perform(post("/v1/library-event")
         .content(json)
@@ -68,7 +68,7 @@ public class LibraryEventControllerUnitTest {
                 .libraryEventType(LibraryEventType.NEW)
                 .build();
         String json = objectMapper.writeValueAsString(libraryEvent);
-        doNothing().when(libraryEventProducer).sendLibraryEvent_Approach2(isA(LibraryEvent.class));
+        when(libraryEventProducer.sendLibraryEvent_Approach2(isA(LibraryEvent.class))).thenReturn(null);
 
         String expectedErrorMessage = "book.bookAuthor - must not be blank, book.bookId - must not be null";
         mockMvc.perform(post("/v1/library-event")
