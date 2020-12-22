@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: library-events-listener-group
+    bootstrap-servers: 192.168.1.39:9092, 192.168.1.39:9093, 192.168.1.39:9094
