@@ -3,4 +3,7 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        acks: all
+        retries: 10
     bootstrap-servers: dev:9097, dev:9098, dev:9099
