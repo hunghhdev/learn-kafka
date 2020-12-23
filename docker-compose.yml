@@ -16,6 +16,8 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_PORT: 9092
+    depends_on:
+      - zookeeper
   kafka2:
     image: wurstmeister/kafka
     container_name: kafka2
@@ -26,6 +28,8 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9093
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_PORT: 9093
+    depends_on:
+      - zookeeper
   kafka3:
     image: wurstmeister/kafka
     container_name: kafka3
@@ -36,3 +40,5 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://:9094
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_PORT: 9094
+    depends_on:
+      - zookeeper
