@@ -3,7 +3,15 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      properties:
-        acks: all
-        retries: 10
-    bootstrap-servers: dev:9097, dev:9098, dev:9099
+    ssl:
+      trust-store-location: "classpath:certs/kafka.producer.keystore.jks"
+      trust-store-password: "confluent"
+      key-store-location: "classpath:certs/kafka.producer.keystore.jks"
+      key-store-password: "confluent"
+      key-password: "confluent"
+
+    properties:
+      security.protocol: "SSL"
+      ssl.endpoint.identification.algorithm:
+    bootstrap-servers: 192.168.1.39:39092, 192.168.1.39:29092, 192.168.1.39:19092
+

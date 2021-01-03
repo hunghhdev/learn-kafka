@@ -1,8 +1,21 @@
 spring:
   kafka:
-    template:
-      default-topic: library-events
+    bootstrap-servers: 192.168.1.39:39092, 192.168.1.39:29092, 192.168.1.39:19092
+    ssl:
+      trust-store-location: "classpath:certs/kafka.client.truststore.jks"
+      trust-store-password: "confluent"
+      key-store-location: "classpath:certs/kafka.client.keystore.jks"
+      key-store-password: "confluent"
+      key-password: "confluent"
+    security:
+      protocol: "SSL"
+    properties:
+      ssl.endpoint.identification.algorithm:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: notify-group
+      auto-offset-reset: earliest
     producer:
-      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    bootstrap-servers: 192.168.1.39:9092, 192.168.1.39:9093, 192.168.1.39:9094

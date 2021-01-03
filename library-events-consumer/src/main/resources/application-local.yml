@@ -4,7 +4,16 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       group-id: library-events-listener-group
-    bootstrap-servers: 192.168.1.39:9092, 192.168.1.39:9093, 192.168.1.39:9094
+      ssl:
+        trust-store-location: "classpath:certs/kafka.consumer.keystore.jks"
+        trust-store-password: "confluent"
+        key-store-location: "classpath:certs/kafka.consumer.truststore.jks"
+        key-store-password: "confluent"
+        key-password: "confluent"
+      properties:
+        security.protocol: "SSL"
+        ssl.endpoint.identification.algorithm:
+    bootstrap-servers: 192.168.1.39:39092, 192.168.1.39:29092, 192.168.1.39:19092
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
